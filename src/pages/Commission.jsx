@@ -270,7 +270,7 @@ const CommissionPage = () => {
 
     return (
         <div className="w-full">
-            <h2 className="text-2xl text-left p-6">Commission Products</h2>
+            <h3 className="text-xl font-bold text-left p-6">Commission Products</h3>
 
             {/* Search and Filter Section */}
             <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
@@ -374,11 +374,11 @@ const CommissionPage = () => {
                     </div>
                 ) : (
                     <>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                             {products.map((product) => (
                                 <div key={product.product_id} className="border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
                                     {/* Product Image */}
-                                    <div className="relative h-58 bg-gray-100">
+                                    <div className="relative h-48 bg-gray-100">
                                         <img
                                             crossOrigin="anonymous"
                                             src={product.image
@@ -403,10 +403,7 @@ const CommissionPage = () => {
                                         <h3 className="font-semibold mb-1 truncate" title={product.name}>
                                             {product.name}
                                         </h3>
-                                        <p className="text-gray-600 text-sm mb-2 line-clamp-2" title={product.reviews_count}>
-                                            Reviews Count: {product.reviews_count}
-                                        </p>
-                                        <div className="flex justify-between items-center mb-3">
+                                        <div className="flex justify-between items-center">
                                             <span className="font-bold text-red-600">{currency}{product.price.toLocaleString()}</span>
                                             <span className="text-sm text-gray-500">{product.sold_count || 0} sold</span>
                                         </div>
