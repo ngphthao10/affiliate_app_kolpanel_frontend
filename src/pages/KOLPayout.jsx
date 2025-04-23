@@ -386,7 +386,7 @@ const KOLPayout = ({ influencerId }) => {
                                                             <td className="px-4 py-2 whitespace-nowrap text-sm">#{order.order_id}</td>
                                                             <td className="px-4 py-2 text-sm">{order.product_name || 'Multiple Items'}</td>
                                                             <td className="px-4 py-2 whitespace-nowrap text-sm">{formatCurrency(order.total)}</td>
-                                                            <td className="px-4 py-2 whitespace-nowrap text-sm">{formatCurrency(order.commission)}</td>
+                                                            <td className="px-4 py-2 whitespace-nowrap text-sm">{formatCurrency(order.commission.total)}</td>
                                                             <td className="px-4 py-2 whitespace-nowrap text-sm">{dayjs(order.creation_at).format('YYYY-MM-DD')}</td>
                                                         </tr>
                                                     ))}
