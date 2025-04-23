@@ -150,8 +150,8 @@ const CommissionPage = () => {
 
             if (response.data.success) {
                 setProducts(response.data.products);
-                setTotalProducts(response.data.total);
-                setTotalPages(response.data.pages);
+                setTotalProducts(response.data.pagination.total);
+                setTotalPages(response.data.pagination.pages);
             } else {
                 setError(response.data.message || 'Failed to load products');
                 setProducts([]);
@@ -266,7 +266,16 @@ const CommissionPage = () => {
     // Handle pagination
     const handlePageChange = (page) => {
         setCurrentPage(page);
+        window.scrollTo(0, 0);
     };
+
+    // Debug pagination values
+    console.log({
+        currentPage,
+        totalPages,
+        totalProducts,
+        itemsPerPage
+    });
 
     return (
         <div className="w-full">
@@ -374,11 +383,11 @@ const CommissionPage = () => {
                     </div>
                 ) : (
                     <>
-                        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6">
                             {products.map((product) => (
                                 <div key={product.product_id} className="border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
                                     {/* Product Image */}
-                                    <div className="relative h-48 bg-gray-100">
+                                    <div className="relative h-60 bg-gray-100">
                                         <img
                                             crossOrigin="anonymous"
                                             src={product.image
@@ -443,7 +452,13 @@ const CommissionPage = () => {
                         {/* Pagination */}
                         {totalPages > 1 && (
                             <div className="mt-8 flex justify-center">
-                                <nav className="inline-flex rounded-md shadow-sm -space-x-px">
+                                <div className="flex items-center gap-2">
+                                    <span className="text-sm text-gray-600">
+                                        Page {currentPage} of {totalPages} ({totalProducts} products)
+                                    </span>
+                                </div>
+
+                                <nav className="inline-flex rounded-md shadow-sm -space-x-px ml-4">
                                     <button
                                         onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
                                         disabled={currentPage === 1}
